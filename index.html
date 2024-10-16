@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текущо време</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Текущо време</h1>
+        <div id="clock">Зарежда се...</div>
+    </div>
+
+    <script>
+        if (window.Worker) {
+            const worker = new Worker('js/worker.js');
+            worker.onmessage = function(e) {
+                document.getElementById('clock').textContent = e.data;
+            };
+        } else {
+            console.log('Вашият браузър не поддържа Web Workers.');
+        }
+    </script>
+</body>
+</html>
+
+
